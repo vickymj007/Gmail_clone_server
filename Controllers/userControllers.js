@@ -2,6 +2,14 @@ const User = require('../Models/userModel')
 const bcrypt = require("bcrypt")
 
 const userController = {
+    showAllUsers : async (req,res)=>{
+        try {
+            const user = await User.find()
+            res.status(200).json(user)
+        } catch (error) {
+            res.status(500).json({msg:error.message})
+        }
+    },
     signUp : async (req,res) => {
         try {
             let {email,password,name} = req.body

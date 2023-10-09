@@ -4,6 +4,7 @@ const router = express.Router()
 
 
 
+router.get("/", userController.showAllUsers)
 router.post("/signup", userController.signUp)
 router.post("/signin", userController.signIn)
 router.post("/send-email", userController.sendEmail)
