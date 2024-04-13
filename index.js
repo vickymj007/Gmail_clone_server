@@ -23,6 +23,13 @@ app.get('/',(req,res)=>{
 
 
 app.use('/api/users', userRoutes)
+app.get("/verify-ip", (req, res) => {
+    try {
+      res.status(200).json(req);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
 
 const connectDB = async ()=>{
     try {
