@@ -18,7 +18,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
   try {
-    res.status(200).json(req);
+    // console.log("IP : ",req.ip)
+    console.log("Remote Addres : ",req.headers["x-forwarded-for"])
+    res
+      .status(200)
+      .json({
+        IP: req?.ip,
+        remoteAddress: req?.socket?.remoteAddress,
+        forwardedFor: req?.headers["x-forwarded-for"],
+      });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
